@@ -6,7 +6,7 @@ pipeline {
     }
   }
   triggers {
-    // Quita esto si vas a usar webhook de GitHub
+    // comenta esto si luego usas webhook
     pollSCM('H/2 * * * *')
   }
   stages {
@@ -17,12 +17,12 @@ pipeline {
     }
     stage('Build') {
       steps {
-        bat 'mvn -q -DskipTests package'
+        sh 'mvn -q -DskipTests package'
       }
     }
     stage('Run') {
       steps {
-        bat 'java -cp target\\jenkins-ci-practice-1.0-SNAPSHOT.jar com.example.App'
+        sh 'java -cp target/jenkins-ci-practice-1.0-SNAPSHOT.jar com.example.App'
       }
     }
   }
